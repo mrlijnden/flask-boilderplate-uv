@@ -189,7 +189,36 @@ For production deployment, consider using a process manager like **systemd** or 
    sudo systemctl restart nginx
    ```
 
-### Step 6: Securing Nginx with Let's Encrypt
+### Step 6: Configure Domain DNS
+
+To point your GoDaddy domain to your DigitalOcean Droplet:
+
+1. Log in to your GoDaddy account.
+
+2. Navigate to the DNS management page for your domain.
+
+3. Remove any existing A records pointing to your domain.
+
+4. Add new A records:
+   - Type: A
+   - Host: @
+   - Points to: Your DigitalOcean Droplet's IP address
+   - TTL: 600 seconds (or 1 hour)
+
+5. Add a CNAME record for the www subdomain:
+   - Type: CNAME
+   - Host: www
+   - Points to: @
+   - TTL: 1 hour
+
+6. (Optional) Add DigitalOcean nameservers:
+   - ns1.digitalocean.com
+   - ns2.digitalocean.com
+   - ns3.digitalocean.com
+
+7. Wait for DNS propagation (can take up to 48 hours, but often much faster).
+
+### Step 7: Securing Nginx with Let's Encrypt
 
 To enable HTTPS and secure your Nginx server with SSL/TLS certificates, follow these steps:
 
@@ -213,5 +242,5 @@ To enable HTTPS and secure your Nginx server with SSL/TLS certificates, follow t
    sudo certbot renew --dry-run
    ```
 
-Your Nginx server is now secured with Let's Encrypt SSL/TLS certificates, and HTTPS is enabled for your Flask application.
+Your Nginx server is now secured with Let’s Encrypt SSL/TLS certificates, and HTTPS is enabled for your Flask application.
 
