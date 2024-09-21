@@ -215,4 +215,3 @@ To enable HTTPS and secure your Nginx server with SSL/TLS certificates, follow t
 
 Your Nginx server is now secured with Let's Encrypt SSL/TLS certificates, and HTTPS is enabled for your Flask application.
 
-Now your Flask application is up and running on Digital Ocean! If you have any questions or need further assistance, feel free to ask.
